@@ -21,7 +21,6 @@ const LinkForm = ({ linkItem, number, id }: { linkItem: link, number: number, id
   const { updateLink, removeLink } = useLinks();
   const selectedPlatform = linkItem ? linkItem.platform : "github"
   const selectedPlatformObject = platforms.find((platform) => platform.name.split(" ").join("").toLowerCase() === selectedPlatform);
-
   if (platforms) return (
     <form id={id} className="p-6 bg-light-gray rounded-[12px]">
       <div className="flex justify-between w-full items-center">
