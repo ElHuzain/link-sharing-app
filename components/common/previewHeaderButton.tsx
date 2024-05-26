@@ -26,7 +26,7 @@ export const PreviewCopyButton = () => {
     const pathname = usePathname();
 
     const handleCopy = async () => {
-        await navigator.clipboard.writeText(`https://devlinks.vercel.app${pathname}`);
+        await navigator.clipboard.writeText(`https://elhuzain-devlinks.vercel.app${pathname}`);
         setCopied(true);
         timeoutRef.current = setTimeout(() => setCopied(false), 2000);
     }
