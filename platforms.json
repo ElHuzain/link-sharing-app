@@ -1,0 +1,12 @@
+[
+    {
+        "platform": "twitter",
+        "includes": "twitter.com",
+        "newLink": true
+    },
+    {
+        "platform": "github",
+        "includes": "github.com",
+        "newLink": true
+    }
+]
