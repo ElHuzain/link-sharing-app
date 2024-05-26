@@ -11,12 +11,14 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+import platforms from "@/utils/data/platforms.json"
+
 import { Label } from '@/components/ui/label'
 import { useLinks } from './linksContainer'
 
 const LinkForm = ({ linkItem, number, id }: { linkItem: Link, number: number, id: string }) => {
 
-  const { updateLink, removeLink, platforms } = useLinks();
+  const { updateLink, removeLink } = useLinks();
   const selectedPlatform = linkItem ? linkItem.platform : "github"
 
   if (platforms) return (

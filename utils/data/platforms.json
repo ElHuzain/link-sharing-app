@@ -1,0 +1,54 @@
+[
+    {
+        "name": "GitHub",
+        "includes": "github.com/"
+    },
+    {
+        "name": "Frontend Mentor",
+        "includes": "frontendmentor.io/profile/"
+    },
+    {
+        "name": "Twitter",
+        "includes": "twitter.com/"
+    },
+    {
+        "name": "LinkedIn",
+        "includes": "linkedin.com/in/"
+    },
+    {
+        "name": "YouTube",
+        "includes": "youtube.com/"
+    },
+    {
+        "name": "Facebook",
+        "includes": "facebook.com/"
+    },
+    {
+        "name": "Twitch",
+        "includes": "twitch.tv/"
+    },
+    {
+        "name": "CodeWars",
+        "includes": "codewars.com/users/"
+    },
+    {
+        "name": "Devto",
+        "includes": "dev.to/"
+    },
+    {
+        "name": "freeCodeCamp",
+        "includes": "freecodecamp.org/"
+    },
+    {
+        "name": "GitLab",
+        "includes": "gitlab.com/"
+    },
+    {
+        "name": "Hashnode",
+        "includes": "hashnode.com/@"
+    },
+    {
+        "name": "Stack Overflow",
+        "includes": "stackoverflow.com/users/"
+    }
+]

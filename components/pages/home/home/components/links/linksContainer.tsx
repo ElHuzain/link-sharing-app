@@ -21,7 +21,7 @@ const LinksContainer = () => {
             <section className="bg-white w-full rounded-[8px] h-full">
 
                 {/* Contains the button to add a link */}
-                <AddLinkArea addLink={addLink} />
+                <AddLinkArea />
 
                 {/* Contains links themselves, and submit button */}
                 <Links />
