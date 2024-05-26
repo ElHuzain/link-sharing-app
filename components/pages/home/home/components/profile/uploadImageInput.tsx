@@ -13,7 +13,7 @@ const UploadImageInput = ({ loading, handleImageUpload, imageSrc, uploadedImageR
       <div className="flex flex-col md:flex-row gap-4 md:items-center">
         <label className="group w-[193px] min-w-[193px] h-[193px] focus-within:border relative overflow-hidden border-purple bg-light-purple rounded-[12px] flex flex-col justify-center gap-2 items-center hover:opacity-80 cursor-pointer">
           {
-            imageSrc ? <>
+            imageSrc || uploadedImageReference ? <>
               <Image alt="" height="193" width="193" className="absolute w-full h-full" src={uploadedImageReference ? uploadedImageReference : imageSrc} />
               <div aria-hidden className="w-full h-full bg-black top-0 left-0 absolute group-hover:opacity-40 transition-opacity opacity-0"></div>
               <div className="z-10 w-full h-full opacity-0 translate-y-[10px] group-hover:opacity-100 group-hover:translate-y-0 transition-all flex flex-col justify-center gap-2 items-center">
