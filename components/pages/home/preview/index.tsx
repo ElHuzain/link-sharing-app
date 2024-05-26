@@ -38,7 +38,7 @@ const PreviewPage = () => {
                     loading ? <LoadingComponent />
                         : userData === null ? <div className="flex flex-col justify-center items-center gap-2">
                             <Image width="182" height="40" alt="logo" className="absolute md:relative md:top-0 md:left-0 md:mb-10 top-8 left-6" src="/images/informative/undraw-not-found.svg" />
-                            <p className="w-full text-center">We couldn't find this user :(</p>
+                            <p className="w-full text-center">{`We couldn't find this user :(`}</p>
                         </div>
                             : <>
                                 <ProfileDetailsPreview size="null" data={userData} />
