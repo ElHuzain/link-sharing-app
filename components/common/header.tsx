@@ -4,6 +4,8 @@ import Link from 'next/link'
 import Tabs from './tabs'
 import useSubscribeToUserDetails from '@/hooks/useSubscribeToUserDetails'
 import { MouseEventHandler } from 'react'
+import toast from 'react-hot-toast'
+import Success from '../ui/customToast'
 
 const Header = () => {
 
@@ -13,7 +15,7 @@ const Header = () => {
     if (!userData.username) {
       //@ts-ignore
       e.preventDefault();
-      return console.error("Set a username");
+      return toast.custom(<Success message="Please complete your profile"/>)
     }
   }
 

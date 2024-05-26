@@ -17,7 +17,6 @@ const PreviewPage = () => {
 
     const fetchUser = async () => {
         const res = await get(usernameFromUrl);
-        console.log(res);
         if (res.success) {
             // @ts-ignore
             setUserData(res.data);
