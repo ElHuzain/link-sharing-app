@@ -1,18 +1,18 @@
 // Links
 
-type link = {
+export type link = {
     platform: string
     url: string
 }
 
-type localLink = {
+export type localLink = {
     id: string
     platform: string
     url: string
 };
 
 // User
-type user = {
+export type user = {
     email: string
     username: string
     imageSrc: string

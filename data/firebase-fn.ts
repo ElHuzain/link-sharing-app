@@ -3,6 +3,7 @@ import { auth, storage } from "./firebase-init";
 import { database } from "./firebase-init"
 import { deleteObject, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, limit, query, setDoc, updateDoc, where } from "firebase/firestore";
+import { link } from "@/globalTypes";
 
 // -- Auth
 export const createAccount = async (email: string, password: string) => {
@@ -134,6 +135,28 @@ export const addLink = async (email: string, platform: string, url: string) => {
         return {
             success: true,
             message: "LINK_ADDED_SUCCESSFULLY"
+        }
+    } catch (err: any) {
+        console.log("DB Layer", err);
+        return {
+            success: false,
+            message: err.code
+        }
+    }
+}
+
+export const addLinks = async (email: string, links: link[]) => {
+    try {
+
+        const docRef = doc(database, "users", email);
+
+        await updateDoc(docRef, {
+            links: links
+        });
+
+        return {
+            success: true,
+            message: "LINKS_ADDED_SUCCESSFULLY"
         }
     } catch (err: any) {
         console.log("DB Layer", err);

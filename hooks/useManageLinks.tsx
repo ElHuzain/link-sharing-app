@@ -7,6 +7,7 @@ import { Link } from '@/state/dataSlice';
 import isValidUrl from '@/utils/isValidUrl';
 import toast from "react-hot-toast"
 import Success from '@/components/ui/customToast';
+import useAddLinks from '@/api/storage/useAddLinks';
 
 export type localLink = {
     platform: string
@@ -20,9 +21,8 @@ const useManageLinks = () => {
 
     const [links, setLinks] = useState<localLink[] | []>([]);
     const [originalLinks, setOriginalLinks] = useState<localLink[] | []>([]);
-    const addLinkAPI = useAddLink();
+    const addLinksAPI = useAddLinks();
     const removeLinkAPI = useRemoveLink();
-    const canContinue = useRef<boolean>(true);
 
     const { loading, userData, fetchUserDetails } = useSubscribeToUserDetails();
 
@@ -112,25 +112,12 @@ const useManageLinks = () => {
 
         if (!isValid.success) return toast.custom(<Success imageSrc='/images/icon-changes-saved.svg' message={isValid.message!} />);
         // Submit
-        links.forEach(async (LinkItem: localLink) => {
 
-
-            if (LinkItem.newLink) {
-                const res = await addLinkAPI.post(userData.email, LinkItem.platform, LinkItem.url);
-                await fetchUserDetails();
-                if (res.success) toast.custom(<Success imageSrc='/images/icon-changes-saved.svg' message="Link added successfully" />)
-
-            } else if (LinkItem.updatedLink) {
-                const originalLink = originalLinks.find(item => item.id === LinkItem.id);
-                if (originalLink!.platform !== LinkItem.platform || originalLink!.url !== LinkItem.url) {
-                    await removeLinkAPI.del(userData.email, { platform: originalLink!.platform, url: originalLink!.url });
-                    const res = await addLinkAPI.post(userData.email, LinkItem.platform, LinkItem.url);
-                    await fetchUserDetails();
-                    if (res.success) toast.custom(<Success imageSrc='/images/icon-changes-saved.svg' message="Link added successfully" />)
-                }
-            }
-
-        })
+        const res = await addLinksAPI.post(userData.email, links);
+        if (res.success) {
+            await fetchUserDetails();
+            toast.custom(<Success imageSrc='/images/icon-changes-saved.svg' message="Changes saved successfully!" />)
+        }
     }
 
     const canSubmit = false;
