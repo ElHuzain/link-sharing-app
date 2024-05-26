@@ -8,7 +8,6 @@ import useSubscribeToUserDetails from "@/hooks/useSubscribeToUserDetails";
 import { createContext, useState } from "react";
 import { User } from "@/state/dataSlice";
 import LoadingComponent from "@/components/ui/loadingComponent";
-import LinksComponent from "./components/links/gpt";
 
 export const UserDetailsContext = createContext<{} | User>({});
 

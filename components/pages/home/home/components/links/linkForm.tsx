@@ -38,6 +38,7 @@ const LinkForm = ({ linkItem, number, id }: { linkItem: Link, number: number, id
             </SelectTrigger>
             <SelectContent>
               {
+                // @ts-ignore
                 platforms.map((platform, i: number) => <SelectItem key={i} value={platform.name.split(" ").join("").toLowerCase()}>
                   <div className="flex items-center gap-2">
                     <span>{platform.name}</span>

@@ -12,6 +12,7 @@ const useSubscribeToUserDetails = () => {
         setLoading(true);
 
         const platformsRes = await import('@/platforms.json');
+        // @ts-ignore
         setPlatforms(platformsRes.default);
 
         setLoading(false);

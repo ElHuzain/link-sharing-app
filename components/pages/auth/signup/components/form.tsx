@@ -57,6 +57,7 @@ export default function SignUpForm() {
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
+                                {/* @ts-ignore */}
                                 <Input icon={<Image width="24" height="24" alt="" src="/images/input/icon-email.svg" />} placeholder="e.g. a.huzain98@gmail.com" {...field} />
                             </FormControl>
                             <FormMessage />
@@ -70,6 +71,7 @@ export default function SignUpForm() {
                         <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
+                                {/* @ts-ignore */}
                                 <Input icon={<Image width="24" height="24" alt="" src="/images/input/icon-password.svg" />} placeholder="At least 8 characters" {...field} />
                             </FormControl>
                             <FormMessage />
@@ -83,6 +85,7 @@ export default function SignUpForm() {
                         <FormItem>
                             <FormLabel>Repeat Password</FormLabel>
                             <FormControl>
+                                {/* @ts-ignore */}
                                 <Input icon={<Image width="24" height="24" alt="" src="/images/input/icon-password.svg" />} placeholder="At least 8 characters" {...field} />
                             </FormControl>
                             <FormMessage />

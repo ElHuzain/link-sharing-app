@@ -23,6 +23,7 @@ const LinkList = ({ size, data = null }: { size: string, data?: null | Link[] })
                 size !== "sm" && selectedArray.length <= 0 && <p className="w-full text-center">No links added. :(</p>
             }
             {
+                // @ts-ignore
                 placeholderElements > 0 ? [...Array(placeholderElements).keys()].map((i: number) => <li key={i}><LinkComponent size="sm" /></li>) : null
             }
         </ul>

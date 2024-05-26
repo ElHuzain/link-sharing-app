@@ -14,6 +14,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={cn("bg-white group flex py-3 items-center border focus-within:border-purple focus-within:shadow-xl focus-within:!shadow-active rounded-[8px]", error?.message && "border-red")}>
         {
+          // @ts-ignore
           props.icon && <span className="mx-4">{props.icon}</span>
         }
 

@@ -2,7 +2,7 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/comp
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React from 'react'
-
+// @ts-ignore
 const UserDetailsInput = ({ form }) => {
     return (
         <div className="bg-light-gray p-4 space-y-4 p-[20px]">

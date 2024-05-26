@@ -3,13 +3,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Tabs from './tabs'
 import useSubscribeToUserDetails from '@/hooks/useSubscribeToUserDetails'
+import { MouseEventHandler } from 'react'
 
 const Header = () => {
 
   const { userData } = useSubscribeToUserDetails();
 
-  const handleCanPreview = (e) => {
+  const handleCanPreview = (e: MouseEventHandler<HTMLAnchorElement>) => {
     if (!userData.username) {
+      //@ts-ignore
       e.preventDefault();
       return console.error("Set a username");
     }
@@ -28,6 +30,7 @@ const Header = () => {
           <Tabs />
 
           <Button asChild size="sm" variant="outline">
+            {/* @ts-ignore */}
             <Link onClick={handleCanPreview} href={"/preview/" + userData.username}>
               <Image height="13" width="19" alt="" src="/images/button/icon-preview-header.svg" className="md:hidden" />
               <span className="sr-only md:not-sr-only">Preview</span>

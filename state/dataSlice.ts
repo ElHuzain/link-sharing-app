@@ -49,7 +49,7 @@ export const dataSlice = createSlice({
         },
 
         setUserProfileURL: (state, action: { payload: string }) => {
-            state.user.profileURL = action.payload;
+            state.user.imageSrc = action.payload;
         },
 
         setUserDescription: (state, action: { payload: string }) => {

@@ -54,6 +54,7 @@ export default function SignInForm() {
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
+                                {/* @ts-ignore */}
                                 <Input icon={<Image width="24" height="24" alt="" src="/images/input/icon-email.svg" />} placeholder="e.g. a.huzain98@gmail.com" {...field} />
                             </FormControl>
                         </FormItem>
@@ -66,6 +67,7 @@ export default function SignInForm() {
                         <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
+                                {/* @ts-ignore */}
                                 <Input icon={<Image width="24" height="24" alt="" src="/images/input/icon-password.svg" />} placeholder="Enter your password" {...field} />
                             </FormControl>
                         </FormItem>

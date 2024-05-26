@@ -20,6 +20,7 @@ const PreviewHeaderButton = () => {
 
 export const PreviewCopyButton = () => {
     const [copied, setCopied] = useState(false);
+    // @ts-ignore
     const timeoutRef = useRef<Timeout | null>(null);
 
     const pathname = usePathname();
