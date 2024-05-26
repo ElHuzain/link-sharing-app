@@ -1,0 +1,18 @@
+{
+    "success": {
+        "backgroundColor": "#333333",
+        "color": "#fff",
+        "paddingLeft": "24px",
+        "paddingRight": "24px",
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "space-between",
+        "gap": "8px",
+        "borderRadius": "8px"
+    },
+    "failure": {
+
+    }
+}

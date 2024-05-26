@@ -6,6 +6,7 @@ import generateUUID from '@/lib/generateUUID';
 import { Link } from '@/state/dataSlice';
 import isValidUrl from '@/utils/isValidUrl';
 import toast from "react-hot-toast"
+import Success from '@/components/ui/customToast';
 
 export type localLink = {
     platform: string
@@ -57,7 +58,7 @@ const useManageLinks = () => {
     }
 
     useEffect(() => {
-        
+
         if (!loading) {
             const newLinksArr = userData.links.map((link: Link, i: number) => ({ ...link, id: generateUUID() }));
             setLinks(newLinksArr);
@@ -75,7 +76,7 @@ const useManageLinks = () => {
             if (!LinkItem.platform || !LinkItem.url) {
                 return {
                     success: false,
-                    message: "Empty fields",
+                    message: `Link #${i + 1} is missing fields`,
                     link: LinkItem
                 }
             }
@@ -83,7 +84,7 @@ const useManageLinks = () => {
             if (!isValidUrl(LinkItem.url, LinkItem.platform)) {
                 return {
                     success: false,
-                    message: "Invalid URL",
+                    message: `Invalid URL for ${LinkItem.platform}.`,
                     link: LinkItem
                 }
             }
@@ -92,11 +93,15 @@ const useManageLinks = () => {
             if (duplicateLink) {
                 return {
                     success: false,
-                    message: "Duplicate link",
+                    message: `Platform ${LinkItem.platform} exists more than once.`,
                     link: duplicateLink
                 }
             }
 
+        }
+
+        return {
+            success: true
         }
 
     }
@@ -105,7 +110,7 @@ const useManageLinks = () => {
 
         const isValid = validateLinks();
 
-        if (!canContinue.current) return;
+        if (!isValid.success) return toast.custom(<Success imageSrc='/images/icon-changes-saved.svg' message={isValid.message!} />);
         // Submit
         links.forEach(async (LinkItem: localLink) => {
 
@@ -113,11 +118,7 @@ const useManageLinks = () => {
             if (LinkItem.newLink) {
                 const res = await addLinkAPI.post(userData.email, LinkItem.platform, LinkItem.url);
                 await fetchUserDetails();
-                if (res.success) toast.success("Changes saved!", {
-                    style: {
-                        backgroundColor: "#0a0a0a",
-                    },
-                })
+                if (res.success) toast.custom(<Success imageSrc='/images/icon-changes-saved.svg' message="Link added successfully" />)
 
             } else if (LinkItem.updatedLink) {
                 const originalLink = originalLinks.find(item => item.id === LinkItem.id);
@@ -125,7 +126,7 @@ const useManageLinks = () => {
                     await removeLinkAPI.del(userData.email, { platform: originalLink!.platform, url: originalLink!.url });
                     const res = await addLinkAPI.post(userData.email, LinkItem.platform, LinkItem.url);
                     await fetchUserDetails();
-                    console.log(res);
+                    if (res.success) toast.custom(<Success imageSrc='/images/icon-changes-saved.svg' message="Link added successfully" />)
                 }
             }
 
