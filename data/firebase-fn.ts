@@ -82,7 +82,7 @@ export const createUserDetails = async (email: string) => {
     }
 }
 
-export async function uploadProfileImage(email: string, image: Uint8Array, returnUrl?: boolean) {
+export async function uploadProfileImage(email: string, image: Uint8Array | File, returnUrl?: boolean) {
     try {
         const ImageRef = ref(storage, 'profiles/' + email);
         await uploadBytes(ImageRef, image);
