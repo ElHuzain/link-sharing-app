@@ -20,13 +20,17 @@ export type localLink = {
 const useManageLinks = () => {
 
     const [links, setLinks] = useState<localLink[] | []>([]);
+    const [canSubmit, setCanSubmit] = useState<boolean>(false);
     const [originalLinks, setOriginalLinks] = useState<localLink[] | []>([]);
     const addLinksAPI = useAddLinks();
     const removeLinkAPI = useRemoveLink();
 
     const { loading, userData, fetchUserDetails } = useSubscribeToUserDetails();
 
-    const addLink = () => setLinks([...links, { platform: "", url: "", id: generateUUID(), newLink: true }]);
+    const addLink = () => {
+        setCanSubmit(true);
+        setLinks([...links, { platform: "", url: "", id: generateUUID(), newLink: true }]);
+    }
 
     const removeLink = async (id: string) => {
         const link = links.find(item => item.id === id);
@@ -51,10 +55,13 @@ const useManageLinks = () => {
             setLinks(prev => prev.map(item => item.id === id ? { ...item, [field]: value } : item))
         }
 
-        // If existing link, add updatedLink to true
+        // If existing link, set updatedLink to true
         else {
-            setLinks(prev => prev.map(item => item.id === id ? { ...item, [field]: value, updatedLink: true } : item))
+            const updatedLink = { ...link, [field]: value, updatedLink: true };
+            setCanSubmit(checkCanSubmit(updatedLink));
+            setLinks(prev => prev.map(item => item.id === id ? updatedLink : item))
         }
+
     }
 
     useEffect(() => {
@@ -66,7 +73,6 @@ const useManageLinks = () => {
         }
 
     }, [loading]);
-
 
     const validateLinks = () => {
 
@@ -120,7 +126,21 @@ const useManageLinks = () => {
         }
     }
 
-    const canSubmit = false;
+    const checkCanSubmit = (checkLink: localLink) => {
+        // If new link, then surely you can submit
+        if (checkLink.newLink) return true;
+
+        // If modified, check original
+        const link = originalLinks.find(item => item.id === checkLink.id);
+        if (!link) {
+            console.error("Link not found");
+            return false
+        }
+        if (checkLink.url !== link.url || checkLink.platform !== link.platform) return true;
+
+        // Other than that..
+        return false;
+    }
 
     return {
         links,
@@ -128,7 +148,8 @@ const useManageLinks = () => {
         removeLink,
         updateLink,
         onSubmit,
-        loading
+        loading,
+        canSubmit
     }
 
 }

@@ -11,8 +11,8 @@ export const useLinks = () => useContext(linksContext);
 
 const LinksContainer = () => {
 
-    const { links, addLink, updateLink, removeLink, onSubmit, loading } = useManageLinks();
-    const value = { links, addLink, updateLink, removeLink, onSubmit }
+    const { links, addLink, updateLink, removeLink, onSubmit, loading, canSubmit } = useManageLinks();
+    const value = { links, addLink, updateLink, removeLink, onSubmit, canSubmit }
 
     if (loading) return <RelativeLoadingComponent />
 
