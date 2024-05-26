@@ -20,6 +20,7 @@ const LinkForm = ({ linkItem, number, id }: { linkItem: Link, number: number, id
 
   const { updateLink, removeLink } = useLinks();
   const selectedPlatform = linkItem ? linkItem.platform : "github"
+  const selectedPlatformObject = platforms.find((platform) => platform.name.split(" ").join("").toLowerCase() === selectedPlatform);
 
   if (platforms) return (
     <form id={id} className="p-6 bg-light-gray rounded-[12px]">
@@ -62,6 +63,7 @@ const LinkForm = ({ linkItem, number, id }: { linkItem: Link, number: number, id
             <input
               id={`link-${id}`}
               onChange={(e) => { updateLink(id, "url", e.target.value.toLowerCase()) }}
+              placeholder={selectedPlatformObject ? `E.g. ${selectedPlatformObject.includes}elhuzain` : "Selct a platform"}
               value={linkItem ? linkItem.url : ""}
               className={"flex w-full text-dark-gray rounded-md bg-background text-sm border-0 outline-0 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"}
             />
