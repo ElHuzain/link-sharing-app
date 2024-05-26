@@ -1,13 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import useSubscribeToUserDetails from './useSubscribeToUserDetails';
-import useAddLink from '@/api/storage/useAddLink';
 import useRemoveLink from '@/api/storage/useRemoveLink';
 import generateUUID from '@/lib/generateUUID';
-import { Link } from '@/state/dataSlice';
 import isValidUrl from '@/utils/isValidUrl';
 import toast from "react-hot-toast"
 import Success from '@/components/ui/customToast';
 import useAddLinks from '@/api/storage/useAddLinks';
+import { link } from '@/globalTypes';
 
 export type localLink = {
     platform: string
@@ -67,7 +66,7 @@ const useManageLinks = () => {
     useEffect(() => {
 
         if (!loading) {
-            const newLinksArr = userData.links.map((link: Link, i: number) => ({ ...link, id: generateUUID() }));
+            const newLinksArr = userData.links.map((link: link, i: number) => ({ ...link, id: generateUUID() }));
             setLinks(newLinksArr);
             setOriginalLinks(newLinksArr);
         }

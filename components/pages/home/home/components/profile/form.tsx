@@ -63,14 +63,12 @@ const FormComponent = () => {
 
         // If there's new user data
         if (values.username !== userData.username) {
-            // @ts-ignore
-            await userDetailsSetter.post(userData.email, { username: values.username });
+            await userDetailsSetter.post(userData.email, { username: values.username! });
             willFetch.current = true;
         }
 
         if (values.description !== userData.description) {
-            // @ts-ignore
-            await userDetailsSetter.post(userData.email, { description: values.description });
+            await userDetailsSetter.post(userData.email, { description: values.description! });
             willFetch.current = true;
         }
 

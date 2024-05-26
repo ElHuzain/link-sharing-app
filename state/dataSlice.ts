@@ -1,21 +1,10 @@
+import { link, user } from "@/globalTypes";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export type Link = {
-    platform: string,
-    url: string,
-}
-
-export type User = {
-    username: string,
-    imageSrc: string,
-    description: string,
-    email: string,
-    links: Link[]
-}
 
 export interface IDataState {
-    user: User,
+    user: user,
 }
 
 const initialState: IDataState = {
@@ -33,15 +22,15 @@ export const dataSlice = createSlice({
     initialState,
     reducers: {
 
-        setUserDetails: (state, aciton: { payload: User }) => {
+        setUserDetails: (state, aciton: { payload: user }) => {
             state.user = aciton.payload
         },
 
         addLink: (state, action: PayloadAction) => {
-            state.user.links = [...state.user.links, action.payload] as Link[];
+            state.user.links = [...state.user.links, action.payload] as link[];
         },
         removeLink: (state, action: { payload: string }) => {
-            state.user.links = state.user.links.filter(link => link.platform !== action.payload);
+            state.user.links = state.user.links.filter((link: link) => link.platform !== action.payload);
         },
 
         setUsername: (state, action: { payload: string }) => {

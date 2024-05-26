@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import { Link } from '@/state/dataSlice'
 import Image from 'next/image'
 import React from 'react'
 
@@ -15,8 +14,9 @@ import platforms from "@/utils/data/platforms.json"
 
 import { Label } from '@/components/ui/label'
 import { useLinks } from './linksContainer'
+import { link } from '@/globalTypes'
 
-const LinkForm = ({ linkItem, number, id }: { linkItem: Link, number: number, id: string }) => {
+const LinkForm = ({ linkItem, number, id }: { linkItem: link, number: number, id: string }) => {
 
   const { updateLink, removeLink } = useLinks();
   const selectedPlatform = linkItem ? linkItem.platform : "github"
