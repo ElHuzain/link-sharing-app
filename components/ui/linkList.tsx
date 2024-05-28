@@ -1,10 +1,10 @@
 "use client"
 import React from 'react'
 import LinkComponent from './linkComponent'
-import { Link } from '@/state/dataSlice'
 import useSubscribeToUserDetails from '@/hooks/useSubscribeToUserDetails'
+import { link } from '@/globalTypes'
 
-const LinkList = ({ size, data = null }: { size: string, data?: null | Link[] }) => {
+const LinkList = ({ size, data = null }: { size: string, data?: null | link[] }) => {
 
     const { userData } = useSubscribeToUserDetails();
 
@@ -15,7 +15,7 @@ const LinkList = ({ size, data = null }: { size: string, data?: null | Link[] })
     return (
         <ul className="bg-white w-full max-h-[300px] h-full flex flex-col gap-[20px] w-full">
             {
-                selectedArray.map((link: Link, i: number) => {
+                selectedArray.map((link: link, i: number) => {
                     return <li key={i}><LinkComponent href={link.url} platform={link.platform} size={size} /></li>
                 })
             }

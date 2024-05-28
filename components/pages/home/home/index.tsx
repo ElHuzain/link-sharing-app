@@ -6,10 +6,9 @@ import LinksContainer from "./components/links/linksContainer"
 import ProfileContainer from "./components/profile/profileContainer"
 import useSubscribeToUserDetails from "@/hooks/useSubscribeToUserDetails";
 import { createContext, useState } from "react";
-import { User } from "@/state/dataSlice";
-import LoadingComponent from "@/components/ui/loadingComponent";
+import { user } from "@/globalTypes";
 
-export const UserDetailsContext = createContext<{} | User>({});
+export const UserDetailsContext = createContext<{} | user>({});
 
 const HomePage = () => {
 
@@ -21,7 +20,7 @@ const HomePage = () => {
   const [links, setLinks] = useState();
 
   // Stream user data and updates
-  const { userData, loading } = useSubscribeToUserDetails();
+  const { userData } = useSubscribeToUserDetails();
 
   const value = {
     userData,

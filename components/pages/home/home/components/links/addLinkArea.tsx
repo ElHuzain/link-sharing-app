@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import { Link } from '@/state/dataSlice'
 import React from 'react'
 import { useLinks } from './linksContainer'
 
