@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import useSubscribeToUserDetails from './useSubscribeToUserDetails';
 import { z } from 'zod';
 import toast from 'react-hot-toast';
-import Success from '@/components/ui/customToast';
+import Success, { Error } from '@/components/ui/customToast';
 
 const formSchema = z.object({
     username: z.string().min(4).max(12).nullable(),
@@ -38,9 +38,36 @@ const useManageProfile = () => {
         const files = event.target.files;
         if (files && files.length > 0) {
             const file = files[0];
-            setUploadedImage(file);
-            const url = URL.createObjectURL(file);
-            setUploadedImageReference(url);
+
+            // Check if the file is a PNG or JPEG
+            const validTypes = ['image/png', 'image/jpeg'];
+            if (!validTypes.includes(file.type)) return toast.custom(<Error message="Only PNG and JPEG files are allowed." />);
+
+
+            // Create an image object to check resolution
+            const img = new Image();
+            img.onload = () => {
+                // Check the image resolution
+                if (img.width > 1024 || img.height > 1024) return toast.custom(<Error message="Image resolution must be less than 1024x1024 pixels." />);
+      
+
+                // If valid, set the uploaded image
+                setUploadedImage(file);
+                const url = URL.createObjectURL(file);
+                setUploadedImageReference(url);
+            };
+            img.onerror = () => {
+                alert('There was an error loading the image.');
+            };
+
+            // Read the file as a data URL
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (e.target?.result) {
+                    img.src = e.target.result as string;
+                }
+            };
+            reader.readAsDataURL(file);
         }
     };
 
