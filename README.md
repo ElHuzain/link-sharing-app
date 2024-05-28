@@ -1,5 +1,6 @@
 # Frontend Mentor - Link-sharing app
 This is a challenge provided by Frontend mentor
+
 ![Click here to preview challenge page](./preview.jpg)
 
 ## Welcome! 👋
@@ -38,16 +39,42 @@ To satisfy the required functionality, I started by selecting components needed.
 
 ### Backend
 
-- Firebase Authentication for user authentication
-- Firebase' Firestore to store user data
-- Firebase' Storage to store user images
+Since my main focus is on the client-side application, I went with Firebase' services.
+
+- [Firebase Authentication](https://firebase.google.com/docs/auth) for user authentication
+- [Firebase' Firestore](https://firebase.google.com/docs/firestore) to store user data
+- [Firebase' Storage](https://firebase.google.com/docs/storage) to store user images
 
 ### Client-side application
 
-- Nextjs
-- Chadcn-ui for UI elements
-- Redux for state management
-- React-hook-toast for toast messages
+- [Nextjs](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/) to not get lost in datatypes
+- [Chadcn-ui](https://ui.shadcn.com/) for pre-baked accessible UI elements
+- [Zod](https://zod.dev/) and [react-hook-form](https://react-hook-form.com/) for form handling and validation
+- [Redux](https://redux.js.org/) for state management
+- [React-hot-toast](https://react-hot-toast.com/) for toast messages
+
+## Project Outcomes
+
+Building this project, I have set goals, learned something, and struggled with some.
+
+### What I learned
+
+Throughout building this projects, I planned to enhance my skills in the following:
+
+- Gain a better understanding of Nextjs app router.
+- Further explore client-side / server-side components & when/why to use either.
+- Further explore TypeScript best practices, still need to work on that.
+- Enhance my code readability and scalability.
+
+### What I need to work on
+
+Upon finishing this project, I highlighted some parts that I should work on in the next project:
+
+- Using Nextjs' backend capabilities
+- More TypeScript
+- Futher utilizing Nextjs' file-based system
+- Usage of drag-and-drop libraries
 
 ## Installation
 
