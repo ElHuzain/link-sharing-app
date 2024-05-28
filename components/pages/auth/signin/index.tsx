@@ -2,6 +2,7 @@ import SignInForm from "./components/form"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import GogoleSignIn from "./components/googleSignIn"
 
 const SignInPage = () => {
   return (
@@ -10,10 +11,21 @@ const SignInPage = () => {
       <section className="w-full md:max-w-[476px] px-8 md:p-10 bg-white">
         <h1 className="text-heading-m font-bold">Login</h1>
         <p className="text-body-m text-gray mb-6 mt-2">Add your details below to get back into the app</p>
+
         <SignInForm />
+
         <div className="mt-4 w-full text-center">
           <span className="text-body-m text-gray">{"Don't have an account?"} <Button variant="ghost" className="p-0 text-purple"><Link href="/signup">Create account</Link></Button></span>
         </div>
+
+        <div className="flex gap-2 items-center my-4 mx-1 opacity-50">
+          <div aria-hidden="true" className="w-full h-[1px] bg-gray"></div>
+          <span className="text-body-m text-gray whitespace-nowrap">Other options</span>
+          <div aria-hidden="true" className="w-full h-[1px] bg-gray"></div>
+        </div>
+
+        <GogoleSignIn />
+
       </section>
     </div>
   )

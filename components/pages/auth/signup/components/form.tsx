@@ -17,6 +17,9 @@ import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
 import useSignUp from "@/api/auth/useSignUp"
 import Image from "next/image"
+import toast from "react-hot-toast"
+import Success, { Error } from "@/components/ui/customToast"
+import formatFirebaseResponse from "@/utils/formatFirebaseResponse"
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -43,8 +46,11 @@ export default function SignUpForm() {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         const res = await signup(values.email, values.password);
-        if (!res.success) console.error(res.message)
-        else Router.replace("/home")
+        if (!res.success) {
+            return toast.custom(<Error message={formatFirebaseResponse(res.message)} />);
+        }
+        toast.custom(<Success message="Account created successfully!" />);
+        Router.replace("/home")
     }
 
     return (
@@ -72,7 +78,7 @@ export default function SignUpForm() {
                             <FormLabel>Password</FormLabel>
                             <FormControl>
                                 {/* @ts-ignore */}
-                                <Input icon={<Image width="24" height="24" alt="" src="/images/input/icon-password.svg" />} placeholder="At least 8 characters" {...field} />
+                                <Input type="password" icon={<Image width="24" height="24" alt="" src="/images/input/icon-password.svg" />} placeholder="At least 8 characters" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -86,7 +92,7 @@ export default function SignUpForm() {
                             <FormLabel>Repeat Password</FormLabel>
                             <FormControl>
                                 {/* @ts-ignore */}
-                                <Input icon={<Image width="24" height="24" alt="" src="/images/input/icon-password.svg" />} placeholder="At least 8 characters" {...field} />
+                                <Input type="password" icon={<Image width="24" height="24" alt="" src="/images/input/icon-password.svg" />} placeholder="At least 8 characters" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

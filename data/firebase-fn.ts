@@ -1,9 +1,10 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
 import { auth, storage } from "./firebase-init";
 import { database } from "./firebase-init"
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, limit, query, setDoc, updateDoc, where } from "firebase/firestore";
 import { link } from "@/globalTypes";
+import { GoogleAuthProvider } from "firebase/auth";
 
 // -- Auth
 export const createAccount = async (email: string, password: string) => {
@@ -56,6 +57,10 @@ export const doesThisEmailExist = async (email: string) => {
 
 }
 
+export const signInWithGogole = () => {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
+}
 
 // -- Storage
 

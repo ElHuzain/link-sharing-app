@@ -14,9 +14,10 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import useSignIn from "@/api/auth/useSignIn"
-import { useRouter } from "next/navigation"
-import { useToast } from "@/components/ui/use-toast"
 import Image from "next/image"
+import toast from "react-hot-toast"
+import Success, { Error } from "@/components/ui/customToast"
+import formatFirebaseResponse from "@/utils/formatFirebaseResponse"
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -25,9 +26,7 @@ const formSchema = z.object({
 
 export default function SignInForm() {
 
-    const toast = useToast();
     const { signin, loading } = useSignIn();
-    const Router = useRouter();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -39,9 +38,11 @@ export default function SignInForm() {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         const res = await signin(values.email, values.password);
-        if (!res.success) console.error(res.message)
-        // else Router.replace("/home")
-        toast.toast({ title: "Hayo!", description: "Logged in!" })
+        if (!res.success) {
+            return toast.custom(<Error message={formatFirebaseResponse(res.message)} />);
+        }
+        toast.custom(<Success message="Login successful" />);
+
     }
 
     return (
@@ -68,7 +69,7 @@ export default function SignInForm() {
                             <FormLabel>Password</FormLabel>
                             <FormControl>
                                 {/* @ts-ignore */}
-                                <Input icon={<Image width="24" height="24" alt="" src="/images/input/icon-password.svg" />} placeholder="Enter your password" {...field} />
+                                <Input type="password" icon={<Image width="24" height="24" alt="" src="/images/input/icon-password.svg" />} placeholder="Enter your password" {...field} />
                             </FormControl>
                         </FormItem>
                     )}
