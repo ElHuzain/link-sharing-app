@@ -1,12 +1,22 @@
 "use client";
 import { Button } from '@/components/ui/button'
+import Success from '@/components/ui/customToast';
 import { signInWithGogole } from '@/data/firebase-fn'
 import React from 'react'
+import toast from 'react-hot-toast';
 
 const GogoleSignIn = () => {
 
     const signIn = async () => {
-        await signInWithGogole();
+        const res = await signInWithGogole();
+
+        if (res.success) {
+            if (res.action === "create") {
+                toast.custom(<Success message="Account created successfully!" />);
+            } else if(res.action === "login") {
+                toast.custom(<Success message="Login successful" />);
+            }
+        }
     }
 
     return (

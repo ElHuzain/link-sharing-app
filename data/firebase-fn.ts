@@ -55,11 +55,35 @@ export const logout = async () => {
 
 export const doesThisEmailExist = async (email: string) => {
 
+    const docRef = doc(database, "users", email);
+    const docSnap = await getDoc(docRef);
+
+    return docSnap.exists();
+
 }
 
-export const signInWithGogole = () => {
-    const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
+export const signInWithGogole = async () => {
+    try {
+        const provider = new GoogleAuthProvider();
+        const res = await signInWithPopup(auth, provider);
+        if (!await doesThisEmailExist(res.user.email!)) {
+            await createUserDetails(res.user.email!);
+            return {
+                success: true,
+                action: "create"
+            }
+        }
+        return {
+            success: true,
+            action: "login"
+        }
+    } catch (err: any) {
+        console.log("DB Layer", err.code);
+        return {
+            success: false,
+            message: err.code
+        }
+    }
 }
 
 // -- Storage

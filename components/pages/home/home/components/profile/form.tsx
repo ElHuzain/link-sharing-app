@@ -11,7 +11,7 @@ import useManageProfile from '@/hooks/useManageProfile'
 
 const FormComponent = () => {
 
-    const { form, onSubmit, imageUploader, userData, uploadedImageReference, handleImageUpload, canSubmit, loading} = useManageProfile();
+    const { form, onSubmit, imageUploader, userData, uploadedImageReference, handleImageUpload, canSubmit, loading } = useManageProfile();
 
     return (
         <Form {...form}>
@@ -23,6 +23,7 @@ const FormComponent = () => {
                 <SaveButton canSubmit={canSubmit} />
             </form>
         </Form>
+
     )
 }
 
