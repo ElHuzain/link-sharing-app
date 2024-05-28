@@ -13,9 +13,9 @@ const ProfileDetailsPreview = ({ size, data = null }: { size?: string, data?: nu
     <div className={cn("bg-white w-full justify-center text-center text-dark-gray", size === "sm" && "h-[158px]")}>
 
       {/* Profile Photo */}
-      <div className={cn("w-[96px] h-[96px] border-[4px] border-purple rounded-full bg-[#EEEEEE] mx-auto overflow-hidden", !imageSrc && "border-transparent")}>
+      <div className={cn("w-[96px] h-[96px] flex items-center justify-center border-[4px] border-purple rounded-full bg-[#EEEEEE] mx-auto overflow-hidden", !imageSrc && "border-transparent")}>
         {
-          imageSrc && <Image width="96" height="96" alt="" src={imageSrc} />
+          imageSrc && <Image width="96" height="96" alt="" className="w-full h-full object-cover" src={imageSrc} />
         }
       </div>
 
