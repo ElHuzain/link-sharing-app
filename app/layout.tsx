@@ -14,7 +14,7 @@ const fontSans = FontSans({
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Link Sharing",
+  title: "Dev links",
   description: "GURU Level challenge by Frontendmentor.io",
 };
 
