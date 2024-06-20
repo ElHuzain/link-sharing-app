@@ -16,7 +16,7 @@ export default function RootLayout({
     if (loading) return <LoadingComponent />
 
     return (
-        <div className="min-h-dvh">
+        <div className="min-h-dvh flex flex-col gap-6 max-h-dvh overflow-hidden">
             <Header />
             <main>{children}</main>
             {/* <Footer /> */}

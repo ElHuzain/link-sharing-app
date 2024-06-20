@@ -20,7 +20,7 @@ const Header = () => {
   }
 
   return (
-    <div className="pb-6 md:p-6 flex">
+    <div className="!pb-0 md:p-6 flex">
       <header className="bg-white pl-6 md:pl-4 p-4 w-full rounded-[8px] max-w-content mx-auto">
         <nav className="flex justify-between items-center w-full">
           <Link href={"/"}>
