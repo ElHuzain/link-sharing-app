@@ -73,13 +73,14 @@ Upon finishing this project, I highlighted some parts that I should work on in t
 
 - Using Nextjs' backend capabilities
 - More TypeScript
-- Futher utilizing Nextjs' file-based system
+- Futher utilizing Nextjs' file-based routing system
 - Usage of drag-and-drop libraries
 
 ## Installation
 
 To install the project
 1. Clone the repository `git clone https://github.com/ElHuzain/link-sharing-app.git`
-2. Run development environment using `npm run dev`, or build using `npm run build`.
+2. Install the dependencies using `npm run install` or `yarn install`
+3. Run development environment using `npm run dev`, or build using `npm run build`.
 
 
